@@ -1,15 +1,18 @@
 package asteroid;
 
 
+import common.asteroids.Asteroid;
 import common.data.Entity;
 import common.data.GameData;
 import common.data.World;
 import common.services.IEntityProcessingService;
-import common.asteroids.Asteroid;
 
 import java.util.Random;
 
 public class AsteroidProcessor implements IEntityProcessingService {
+    /**
+     *
+     */
 
     private int spawnCounter = 0;
     @Override

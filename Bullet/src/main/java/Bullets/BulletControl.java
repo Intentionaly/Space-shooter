@@ -8,6 +8,11 @@ import common.data.World;
 import common.services.IEntityProcessingService;
 
 public class BulletControl implements IEntityProcessingService, BulletSPI {
+    /**
+     *
+     * @param gameData
+     * @param world
+     */
 
     @Override
     public void process(GameData gameData, World world) {

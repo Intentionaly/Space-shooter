@@ -5,6 +5,10 @@ import javafx.stage.Stage;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main extends Application {
+    /**
+     *
+     * @param args
+     */
 
     public static void main(String[] args) {
         launch(Main.class);

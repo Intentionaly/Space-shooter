@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class World {
+    /**
+     *
+     */
     private final Map<String, Entity> entityMap = new ConcurrentHashMap<>();
 
     public String addEntity(Entity entity) {

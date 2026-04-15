@@ -1,9 +1,9 @@
 package common;
 
 import common.data.Entity;
-import common.data.World;
 import common.data.GameData;
 import common.data.GameKeys;
+import common.data.World;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

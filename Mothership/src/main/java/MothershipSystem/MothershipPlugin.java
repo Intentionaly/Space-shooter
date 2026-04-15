@@ -7,6 +7,10 @@ import common.services.IGamePluginService;
 
 public class MothershipPlugin implements IGamePluginService{
 
+    /**
+     *
+     */
+
     private Entity mothership;
 
     public MothershipPlugin(){}

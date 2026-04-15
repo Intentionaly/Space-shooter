@@ -1,17 +1,20 @@
 package collisionSystem;
 
-import common.services.IPostEntityProcessingService;
+import common.asteroids.Asteroid;
+import common.bullet.Bullet;
 import common.data.Entity;
 import common.data.GameData;
 import common.data.World;
-import common.asteroids.Asteroid;
-import common.bullet.Bullet;
+import common.services.IPostEntityProcessingService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class CollisionDetect implements IPostEntityProcessingService {
+    /**
+     *
+     */
 
     public CollisionDetect() {
     }

@@ -1,6 +1,9 @@
 package common.data;
 
 public class GameKeys {
+    /**
+     *
+     */
     private static boolean[] keys;
     private static boolean[] pkeys;
 

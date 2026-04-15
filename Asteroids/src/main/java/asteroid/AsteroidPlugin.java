@@ -1,13 +1,16 @@
 package asteroid;
 
+import common.asteroids.Asteroid;
 import common.data.Entity;
 import common.data.GameData;
 import common.data.World;
 import common.services.IGamePluginService;
-import common.asteroids.Asteroid;
-
-import java.util.Random;
 public class AsteroidPlugin implements IGamePluginService {
+    /**
+     *
+     * @param gameData
+     * @param world
+     */
 
     @Override
     public void start(GameData gameData, World world) {

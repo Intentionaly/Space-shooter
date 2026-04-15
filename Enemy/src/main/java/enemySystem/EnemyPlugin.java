@@ -7,6 +7,9 @@ import common.services.IGamePluginService;
 
 public class EnemyPlugin implements IGamePluginService {
 
+    /**
+     *
+     */
     private Entity enemy;
 
     @Override

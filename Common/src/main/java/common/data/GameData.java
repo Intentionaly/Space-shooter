@@ -1,6 +1,9 @@
 package common.data;
 
 public class GameData {
+    /**
+     *
+     */
 
         private int displayWidth  = 800;
         private int displayHeight = 825;

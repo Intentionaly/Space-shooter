@@ -1,14 +1,17 @@
 package Bullets;
 
-import common.services.IGamePluginService;
 import common.bullet.Bullet;
 import common.data.Entity;
 import common.data.GameData;
 import common.data.World;
+import common.services.IGamePluginService;
 
 
 
 public class BulletPlugin implements IGamePluginService {
+    /**
+     *
+     */
 
     private Entity bullet;
 

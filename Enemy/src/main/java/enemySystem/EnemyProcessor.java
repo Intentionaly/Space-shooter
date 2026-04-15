@@ -8,6 +8,12 @@ import common.services.IEntityProcessingService;
 
 public class EnemyProcessor implements IEntityProcessingService {
 
+    /**
+     *
+     */
+
+
+
     private double direction = 1;
     private int shootCooldown = 120;
 
