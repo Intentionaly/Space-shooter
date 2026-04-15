@@ -35,3 +35,4 @@ public class ModuleConfig {
         return ServiceLocator.INSTANCE.locateAll(IPostEntityProcessingService.class);
     }
 }
+

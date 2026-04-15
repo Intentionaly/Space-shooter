@@ -1,4 +1,6 @@
 package common.bullet;
 
-public class EnemyBullet {
+import common.data.Entity;
+
+public class EnemyBullet extends Entity {
 }

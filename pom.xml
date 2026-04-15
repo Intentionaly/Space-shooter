@@ -14,6 +14,7 @@
     <module>Collision</module>
     <module>Player</module>
     <module>Mothership</module>
+    <module>Enemy</module>
   </modules>
   <properties>
     <module.output.dir>../mods-mvn</module.output.dir>

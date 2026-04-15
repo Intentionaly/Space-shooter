@@ -10,11 +10,27 @@
     </parent>
 
     <artifactId>Enemy</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <module.output.dir>../plugins</module.output.dir>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.modulename</groupId>
+            <artifactId>Common</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.modulename</groupId>
+            <artifactId>CommonBullet</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

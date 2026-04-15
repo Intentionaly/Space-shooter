@@ -17,7 +17,7 @@ public class AsteroidProcessor implements IEntityProcessingService {
 
         spawnCounter++;
 
-        if (spawnCounter > 200) { // roughly 2 seconds at ~60fps
+        if (spawnCounter > 400) { // roughly 2 seconds at ~60fps
             world.addEntity(createAsteroid(gameData));
             spawnCounter = 0;
         }
