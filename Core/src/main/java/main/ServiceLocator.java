@@ -18,9 +18,14 @@ public enum ServiceLocator {
 
     ServiceLocator() {
         try {
-            Path pluginsDir = Paths.get("plugins"); // Directory with plugins JARs
+            // points to plugin folder
+            Path pluginsDir = Paths.get("plugins");
 
-            // Search for plugins in the plugins directory
+            // we want a secondary from the main, for shared modules that plugins may require (asteroids require commonasteroids)
+            Path modsDir = Paths.get("mods-mvn");
+            ModuleFinder modsFinder = ModuleFinder.of(modsDir);
+
+            // finds modular jars, gathers the module names
             ModuleFinder pluginsFinder = ModuleFinder.of(pluginsDir);
 
             // Find all names of all found plugin modules
@@ -31,16 +36,14 @@ public enum ServiceLocator {
                     .map(ModuleDescriptor::name)
                     .collect(Collectors.toList());
 
-            // Create configuration that will resolve plugin modules
-            // (verify that the graph of modules is correct)
-            Configuration pluginsConfiguration = ModuleLayer
-                    .boot()
-                    .configuration()
-                    .resolve(pluginsFinder, ModuleFinder.of(), plugins);
+            // Create configuration for the plugin modules, first looking in plugins and the mods-mvn for shared modules
+            Configuration pluginsConfiguration = ModuleLayer.boot().configuration().resolve(pluginsFinder, modsFinder, plugins);
 
-            // Create a module layer for plugins
+            // from java building a configuration from resolve, this turns those configurations into module layers
             layer = ModuleLayer
+                    // get the existing layer ( use the boot layer as a parent)
                     .boot()
+                    // create new child layer
                     .defineModulesWithOneLoader(pluginsConfiguration, ClassLoader.getSystemClassLoader());
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -52,6 +55,7 @@ public enum ServiceLocator {
     public <T> List<T> locateAll(Class<T> service) {
         ServiceLoader<T> loader = loadermap.get(service);
 
+        // looks in the plugin layer we named in the start of the file
         if (loader == null) {
             loader = ServiceLoader.load(layer, service);
             loadermap.put(service, loader);
