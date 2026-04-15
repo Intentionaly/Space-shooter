@@ -3,7 +3,6 @@ package common.data;
 import java.io.Serializable;
 import java.util.UUID;
 
-
 public class Entity implements Serializable {
 
     private final UUID ID = UUID.randomUUID();
