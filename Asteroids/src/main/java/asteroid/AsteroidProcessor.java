@@ -36,7 +36,7 @@ public class AsteroidProcessor implements IEntityProcessingService {
 
     private Entity createAsteroid(GameData gameData) {
         Random rnd = new Random();
-        Entity asteroid = new Asteroid();
+        Asteroid asteroid = new Asteroid();
 
         int size = 16;
 

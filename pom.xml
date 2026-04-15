@@ -8,7 +8,7 @@
     <module>Core</module>
     <module>Common</module>
     <module>Asteroids</module>
-    <module>commonAsteroids</module>
+    <module>CommonAsteroids</module>
     <module>Bullet</module>
     <module>CommonBullet</module>
     <module>Collision</module>
@@ -16,6 +16,7 @@
     <module>Mothership</module>
   </modules>
   <properties>
+    <module.output.dir>../mods-mvn</module.output.dir>
     <java>java</java>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.9</maven.compiler.source>
@@ -169,7 +170,7 @@
                       <type>jar</type>
                     </artifactItem>
                   </artifactItems>
-                  <outputDirectory>../mods-mvn</outputDirectory>
+                  <outputDirectory>${module.output.dir}</outputDirectory>
                 </configuration>
               </execution>
             </executions>

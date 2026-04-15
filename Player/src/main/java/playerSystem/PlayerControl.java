@@ -1,5 +1,6 @@
 package playerSystem;
 
+
 import common.bullet.Bullet;
 import common.bullet.BulletSPI;
 import common.data.Entity;
@@ -71,6 +72,12 @@ public class PlayerControl implements IEntityProcessingService {
     }
 
     private Collection<? extends BulletSPI> getBulletSPIs() {
-        return ServiceLoader.load(BulletSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
+        // would be best to use servicelocator here, but since it was moved into core, we cannot require it, therefore we use serviceloader
+        return ServiceLoader
+                // using layer aware method since bullet now lives in plugin
+                .load(PlayerControl.class.getModule().getLayer(), BulletSPI.class)
+                .stream()
+                .map(ServiceLoader.Provider::get)
+                .collect(toList());
     }
 }

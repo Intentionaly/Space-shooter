@@ -35,7 +35,7 @@ public class BulletControl implements IEntityProcessingService, BulletSPI {
 
         // Spawn slightly above player
         bullet.setX(shooter.getX());
-        bullet.setY(shooter.getY() - 15);
+        bullet.setY(shooter.getY() - 25);
 
 
         // size is same as collision area but a big bigger to be Qol

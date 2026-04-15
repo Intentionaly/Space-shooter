@@ -20,7 +20,7 @@
         </dependency>
         <dependency>
             <groupId>org.modulename</groupId>
-            <artifactId>commonAsteroids</artifactId>
+            <artifactId>CommonAsteroids</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
@@ -28,6 +28,7 @@
 
 
     <properties>
+        <module.output.dir>../plugins</module.output.dir>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

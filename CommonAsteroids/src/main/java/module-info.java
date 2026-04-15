@@ -1,4 +1,4 @@
-module commonAsteroids {
+module CommonAsteroids {
     requires Common;
     exports common.asteroids;
 }

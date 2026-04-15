@@ -1,4 +1,4 @@
-package common.util;
+package main;
 
 import java.lang.module.Configuration;
 import java.lang.module.ModuleDescriptor;
