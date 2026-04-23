@@ -45,7 +45,7 @@ public class CollisionDetect implements IPostEntityProcessingService {
                 if (this.collides(entity1, entity2)) {
                     if (entity1 instanceof Bullet && entity2 instanceof Asteroid) {
                         // if the 2 entities colidding are bullet and asteroid add them to the list to be removed
-
+                        gameData.plusOneKill();
                         entitiesToRemove.add(entity1);
                         entitiesToRemove.add(entity2);
 
@@ -57,6 +57,7 @@ public class CollisionDetect implements IPostEntityProcessingService {
 
                         // checking for the other order aswell (bullet hitting asteroid or asteroid hitting bullet)
                     } else if (entity1 instanceof Asteroid && entity2 instanceof Bullet) {
+                        gameData.plusOneKill();
                         entitiesToRemove.add(entity1);
                         entitiesToRemove.add(entity2);
 

@@ -5,6 +5,7 @@ module Core {
     requires spring.context;
     requires spring.core;
     requires spring.beans;
+    requires spring.web;
 
     exports main;
     opens main to javafx.graphics, spring.core;

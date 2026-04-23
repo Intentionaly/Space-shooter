@@ -13,6 +13,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
+import org.springframework.web.client.RestTemplate;
+
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,12 @@ public class Game {
      *
      */
     private final GameData gameData = new GameData();
+
+    private AnimationTimer gameRunning;
+
+    private boolean gameEnded = false;
+
+    private javafx.scene.text.Text healthText;
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
     private final Pane gameWindow = new Pane();
@@ -39,6 +47,18 @@ public class Game {
     public void start(Stage window) throws Exception {
 
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
+
+        // visual mothership health
+        healthText = new javafx.scene.text.Text();
+
+        healthText.setX(10);
+        healthText.setY(20);
+
+        healthText.setStyle("-fx-fill: black;");
+
+        healthText.setText("Health: " + gameData.getMothershipHealth());
+
+        gameWindow.getChildren().add(healthText);
 
         Scene scene = new Scene(gameWindow);
         scene.setOnKeyPressed(event -> {
@@ -75,6 +95,7 @@ public class Game {
                 gameData.getKeys().setKey(GameKeys.DOWN, false);
             }
 
+
         });
 
         // Lookup all Game Plugins using ServiceLoader
@@ -92,15 +113,39 @@ public class Game {
     }
 
     public void render() {
-        new AnimationTimer() {
+        gameRunning = new AnimationTimer() {
             @Override
-            public void handle(long now) {
+            public void handle(long notUsed) {
+
+               // checking for gameover
+                if (gameData.getMothershipHealth() <= 0) {
+
+                    if (!gameEnded) {
+                        sendScore();
+                        gameEnded = true;
+                    }
+
+                    stopGame();
+                    return;
+                }
+
+                // for first 3 seconds the life was null while game sets up, so had to add a check for null
+                if (healthText != null) {
+                    healthText.setText("Health: " + gameData.getMothershipHealth());
+                }
                 update();
                 draw();
                 gameData.getKeys().update();
             }
+        };
 
-        }.start();
+        gameRunning.start();
+    }
+
+    private void stopGame() {
+        if (gameRunning != null) {
+            gameRunning.stop();
+        }
     }
 
     private void update() {
@@ -140,6 +185,18 @@ public class Game {
             polygon.setTranslateY(entity.getY());
         }
 
+    }
+
+    private void sendScore() {
+            RestTemplate restTemplate = new RestTemplate();
+
+            String url = "http://localhost:8080/score";
+
+            GameResult result = new GameResult(gameData.getKills());
+
+            Integer score = restTemplate.postForObject(url, result, Integer.class);
+
+            System.out.println("Final Score is: " + score);
     }
 
     public List<IGamePluginService> getGamePluginServices() {

@@ -29,7 +29,17 @@ public class AsteroidProcessor implements IEntityProcessingService {
 
             asteroid.setY(asteroid.getY() + 1.2); // change this number for speed
 
+            // the reason this detection lives here instead of collisiondetection is its a very simple logic of 1 entity collision so no need
+            // to move it into collisiondetect which is for 1v1 entity detection
             if (asteroid.getY() > gameData.getDisplayHeight() - 80) {
+
+                // the -80 acts as the barrier detecting the asteroid hitting the mothership
+                gameData.mothershipGotHit();
+
+                /* debugging asteroids hitting ship
+                System.out.println("ASTEROID HIT BASE");
+                System.out.println("Health: " + gameData.getMothershipHealth());
+                 */
 
                 // asteroid "hits" the mothership
                 world.removeEntity(asteroid);
