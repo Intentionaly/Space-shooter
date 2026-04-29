@@ -6,6 +6,8 @@ module Core {
     requires spring.core;
     requires spring.beans;
     requires spring.web;
+    requires CommonMothership;
+    requires CommonPlayer;
 
     exports main;
     opens main to javafx.graphics, spring.core;

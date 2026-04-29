@@ -4,6 +4,8 @@ import common.data.Entity;
 import common.data.GameData;
 import common.data.GameKeys;
 import common.data.World;
+import common.mothership.Mothership;
+import common.player.Player;
 import common.services.IEntityProcessingService;
 import common.services.IGamePluginService;
 import common.services.IPostEntityProcessingService;
@@ -56,7 +58,7 @@ public class Game {
 
         healthText.setStyle("-fx-fill: black;");
 
-        healthText.setText("Health: " + gameData.getMothershipHealth());
+        healthText.setText("Health: 0");
 
         gameWindow.getChildren().add(healthText);
 
@@ -117,9 +119,21 @@ public class Game {
             @Override
             public void handle(long notUsed) {
 
-               // checking for gameover
-                if (gameData.getMothershipHealth() <= 0) {
+                Mothership m = getMothership();
+                Player player = getPlayer();
 
+               // checking for gameover
+                if (m != null && m.getMothershipHealth() <= 0) {
+                    if (!gameEnded) {
+                        sendScore();
+                        gameEnded = true;
+                    }
+
+                    stopGame();
+                    return;
+                }
+
+                if (getPlayer() == null) {
                     if (!gameEnded) {
                         sendScore();
                         gameEnded = true;
@@ -131,7 +145,7 @@ public class Game {
 
                 // for first 3 seconds the life was null while game sets up, so had to add a check for null
                 if (healthText != null) {
-                    healthText.setText("Health: " + gameData.getMothershipHealth());
+                    healthText.setText("Health: " + m.getMothershipHealth());
                 }
                 update();
                 draw();
@@ -197,6 +211,25 @@ public class Game {
             Integer score = restTemplate.postForObject(url, result, Integer.class);
 
             System.out.println("Final Score is: " + score);
+    }
+
+    // find the mothership
+    private Mothership getMothership() {
+        for (Entity entity : world.getEntities()) {
+            if (entity instanceof Mothership) {
+                return (Mothership) entity;
+            }
+        }
+        return null;
+    }
+
+    private Player getPlayer() {
+        for (Entity entity : world.getEntities()) {
+            if (entity instanceof Player) {
+                return (Player) entity;
+            }
+        }
+        return null;
     }
 
     public List<IGamePluginService> getGamePluginServices() {

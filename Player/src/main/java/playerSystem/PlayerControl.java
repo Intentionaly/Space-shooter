@@ -7,6 +7,7 @@ import common.data.GameData;
 import common.data.GameKeys;
 import common.data.World;
 import common.services.IEntityProcessingService;
+import common.player.Player;
 
 import java.util.Collection;
 import java.util.ServiceLoader;

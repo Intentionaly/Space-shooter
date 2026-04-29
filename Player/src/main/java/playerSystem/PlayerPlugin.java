@@ -3,6 +3,7 @@ package playerSystem;
 import common.data.Entity;
 import common.data.GameData;
 import common.data.World;
+import common.player.Player;
 import common.services.IGamePluginService;
 
 

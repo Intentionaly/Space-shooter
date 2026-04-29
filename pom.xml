@@ -15,6 +15,9 @@
     <module>Player</module>
     <module>Mothership</module>
     <module>Enemy</module>
+    <module>CommonEnemy</module>
+    <module>CommonMothership</module>
+    <module>CommonPlayer</module>
   </modules>
   <properties>
     <module.output.dir>../mods-mvn</module.output.dir>

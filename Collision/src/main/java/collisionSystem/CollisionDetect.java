@@ -5,7 +5,9 @@ import common.bullet.Bullet;
 import common.data.Entity;
 import common.data.GameData;
 import common.data.World;
+import common.mothership.Mothership;
 import common.services.IPostEntityProcessingService;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +29,28 @@ public class CollisionDetect implements IPostEntityProcessingService {
         List<Entity> entitiesToRemove = new ArrayList<>();
         List<Entity> entitiesToAdd = new ArrayList<>();
 
+        // seperate loop, for single entity detection for hitting the mothership since its very awkward to add a radius to it
+        for (Entity asteroid : world.getEntities(Asteroid.class)) {
+
+            if (asteroid.getY() > gameData.getDisplayHeight() - 80) {
+
+                for (Entity entity : world.getEntities()) {
+                    if (entity instanceof Mothership) {
+
+                        ((Mothership) entity).mothershipGotHit(); // 👈 YOUR method
+
+                        break;
+                    }
+                }
+
+                entitiesToRemove.add(asteroid);
+            }
+        }
+
         // two for loops for all entities in the world
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {
+
 
                 // if a bullet or a asteroid is to be removed, it cannot collide anymore
                 if (entitiesToRemove.contains(entity1) || entitiesToRemove.contains(entity2)) {
@@ -56,7 +77,8 @@ public class CollisionDetect implements IPostEntityProcessingService {
 
 
                         // checking for the other order aswell (bullet hitting asteroid or asteroid hitting bullet)
-                    } else if (entity1 instanceof Asteroid && entity2 instanceof Bullet) {
+                    }
+                    else if (entity1 instanceof Asteroid && entity2 instanceof Bullet) {
                         gameData.plusOneKill();
                         entitiesToRemove.add(entity1);
                         entitiesToRemove.add(entity2);
@@ -65,7 +87,8 @@ public class CollisionDetect implements IPostEntityProcessingService {
                             entitiesToAdd.add(child);
                         }
 
-                    } else {
+                    }
+                    else {
                         entitiesToRemove.add(entity1);
                         entitiesToRemove.add(entity2);
                     }

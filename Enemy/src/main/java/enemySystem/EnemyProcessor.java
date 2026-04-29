@@ -4,6 +4,7 @@ import common.bullet.EnemyBullet;
 import common.data.Entity;
 import common.data.GameData;
 import common.data.World;
+import common.enemy.Enemy;
 import common.services.IEntityProcessingService;
 
 public class EnemyProcessor implements IEntityProcessingService {

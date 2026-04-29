@@ -3,6 +3,7 @@ package MothershipSystem;
 import common.data.Entity;
 import common.data.GameData;
 import common.data.World;
+import common.mothership.Mothership;
 import common.services.IGamePluginService;
 
 public class MothershipPlugin implements IGamePluginService{
@@ -25,6 +26,8 @@ public class MothershipPlugin implements IGamePluginService{
     }
 
     private Entity createMotherShip(GameData gameData){
+        System.out.println("Width: " + gameData.getDisplayWidth());
+        System.out.println("Height: " + gameData.getDisplayHeight());
         Entity mothership = new Mothership();
 
         int halfWidth = gameData.getDisplayWidth() / 2;
@@ -52,6 +55,4 @@ public class MothershipPlugin implements IGamePluginService{
         // Remove entities
         world.removeEntity(mothership);
     }
-
-
 }

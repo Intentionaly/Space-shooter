@@ -1,4 +1,4 @@
-package enemySystem;
+package common.enemy;
 
 import common.data.Entity;
 

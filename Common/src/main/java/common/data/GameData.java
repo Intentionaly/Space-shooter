@@ -11,19 +11,8 @@ public class GameData {
         private  int kills;
         private final GameKeys keys = new GameKeys();
 
-        private int MothershipHealth = 3;
-
-
         public GameKeys getKeys() {
             return keys;
-        }
-
-        public void mothershipGotHit(){
-            this.MothershipHealth--;
-        }
-
-        public int getMothershipHealth(){
-            return MothershipHealth;
         }
 
         public int getDisplayWidth() {

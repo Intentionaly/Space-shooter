@@ -3,6 +3,7 @@ package enemySystem;
 import common.data.Entity;
 import common.data.GameData;
 import common.data.World;
+import common.enemy.Enemy;
 import common.services.IGamePluginService;
 
 public class EnemyPlugin implements IGamePluginService {
