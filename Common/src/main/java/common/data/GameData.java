@@ -23,10 +23,6 @@ public class GameData {
             return displayHeight;
         }
 
-        public void setKills(int kills){
-            this.kills = kills;
-        }
-
         public int getKills(){
             return kills;
         }
